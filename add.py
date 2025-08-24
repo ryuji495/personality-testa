@@ -59,7 +59,9 @@ if current_key in question_tree and isinstance(question_tree[current_key], dict)
             st.session_state.current_key = next_key
             st.rerun()
 else:
-    st.success(question_tree[current_key])
+    st.markdown(f"""
+    {question_tree[current_key]}
+    """)
     if st.button("もう一度やる"):
         st.session_state.current_key = "start"
         st.rerun()
