@@ -59,9 +59,13 @@ if current_key in question_tree and isinstance(question_tree[current_key], dict)
             st.session_state.current_key = next_key
             st.rerun()
 else:
-    st.markdown(f"""
-    {question_tree[current_key]}
-    """)
+    result_text = question_tree[current_key]
+
+    # HTMLで改行できるように <br> を変換
+    result_text = result_text.replace("\\", "<br>")
+
+    st.success(result_text, icon="✅")
+    
     if st.button("もう一度やる"):
         st.session_state.current_key = "start"
         st.rerun()
